@@ -418,8 +418,32 @@ h6 {
   #hero::before{ right:calc(50% + 2vw); width:34vw; height:34vw; }
 }
 @media (max-width: 576px){
-  #hero{ height:auto; padding:72px 0 48px; }
   #hero::after, #hero::before{ display:none; } /* keep mobile clean */
+   #hero{
+    height: auto;                 /* no fixed viewport height */
+    padding: 72px 0 32px;         /* some breathing room */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-right{
+    position: static;             /* <-- stop absolute positioning */
+    top: auto;
+    right: auto;
+    transform: none;
+    width: min(80vw, 360px);      /* responsive width on phones */
+    margin: 16px auto 0;          /* center it under the text */
+    order: 2;                     /* text first, image second */
+  }
+
+  /* If you had decorative ::before/::after blobs, keep them off on mobile */
+  #hero::before,
+  #hero::after{
+    display: none;
+  }
+
 }
 
 
